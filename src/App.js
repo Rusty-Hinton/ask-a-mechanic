@@ -62,6 +62,7 @@ const YEARS = Array.from({ length: 35 }, (_, i) => CURRENT_YEAR - i);
 const MAKES = ["Acura","Audi","BMW","Buick","Cadillac","Chevrolet","Chrysler","Dodge","Ford","GMC","Honda","Hyundai","Infiniti","Jeep","Kia","Lexus","Lincoln","Mazda","Mercedes-Benz","Mitsubishi","Nissan","Ram","Subaru","Tesla","Toyota","Volkswagen","Volvo","Other"];
 
 // ── API ────────────────────────────────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
 const buildSystemPrompt = (vehicle) => {
   const vInfo = vehicle.year && vehicle.make && vehicle.model
     ? `\n\nThe user's vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.mileage ? ` with ${vehicle.mileage} miles` : ""}. Factor this into all advice — mention model-specific quirks, recalls, or known issues when relevant.`
@@ -91,8 +92,8 @@ const sendMessage = async (messages, vehicle) => {
 };
 
 const extractCostFromMessage = (text) => {
-  const match = text.match(/Total:\s*\$(\d[\d,]*)\s*[–\-]\s*\$(\d[\d,]*)/i)
-    || text.match(/\$(\d[\d,]*)\s*[–\-]\s*\$(\d[\d,]*)/);
+  const match = text.match(/Total:\s*\$(\d[\d,]*)\s*[–-]\s*\$(\d[\d,]*)/i)
+    || text.match(/\$(\d[\d,]*)\s*[–-]\s*\$(\d[\d,]*)/);
   if (match) {
     const lo = parseInt(match[1].replace(/,/g, ""));
     const hi = parseInt(match[2].replace(/,/g, ""));
